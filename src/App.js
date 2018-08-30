@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
-import ListShelves from "./ListShelves";
+import ListShelves from "./components/ListShelves";
 import * as BooksAPI from "./utils/BooksAPI";
 class App extends Component {
   state = {
