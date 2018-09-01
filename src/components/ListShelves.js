@@ -3,11 +3,15 @@ import { withStyles } from "@material-ui/core/styles";
 import DisplayBooks from "./DisplayBooks";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
 const styles = {
   title: {
     marginTop: 20,
     marginBottom: 20,
     fontSize: 30
+  },
+  divider: {
+    marginTop: "20px"
   }
 };
 
@@ -19,16 +23,20 @@ class ListShelves extends Component {
       <div className="listShelves">
         {shelves.map(shelf => {
           return (
-            <Grid key={shelf.key} container justify={"center"}>
-              <Typography className={classes.title} color="textSecondary">
-                {shelf.name}
-              </Typography>
-              <DisplayBooks
-                key={shelf.key}
-                shelf={shelf}
-                books={books.filter(book => book.shelf === shelf.key)}
-              />
-            </Grid>
+            <div key={shelf.key}>
+              <Grid key={shelf.key} container justify={"center"}>
+                <Typography className={classes.title} color="textSecondary">
+                  {shelf.name}
+                </Typography>
+                <DisplayBooks
+                  onChangeShelf={this.props.onChangeShelf}
+                  key={shelf.key}
+                  shelf={shelf}
+                  books={books.filter(book => book.shelf === shelf.key)}
+                />
+              </Grid>
+              <Divider light className={classes.divider} />
+            </div>
           );
         })}
       </div>

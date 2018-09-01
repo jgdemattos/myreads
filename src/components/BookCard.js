@@ -5,42 +5,31 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-
+import BookCardMenu from "./BookCardMenu";
+const width = 128;
 const styles = {
+  grid: {
+    width: width
+  },
   card: {
-    width: 128
+    width: width
   },
   title: {
-    marginBottom: 70,
-    fontSize: 14
+    fontSize: 14,
+    width: width
   },
   media: {
     height: 193,
-    Width: 128
-  },
-  button: {
-    float: "right"
+    width: width
   }
 };
 
 class BookCard extends Component {
-  state = {
-    anchorEl: null
-  };
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
+  state = { shelf: "" };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
   render() {
-    const { classes, book, shelf } = this.props;
-    const { anchorEl } = this.state;
+    const { classes, book } = this.props;
+    const { shelf } = this.state;
 
     return (
       <Grid item>
@@ -49,35 +38,16 @@ class BookCard extends Component {
             className={classes.media}
             image={book.imageLinks.thumbnail}
             title={book.title}
-          />
-          <CardContent>
-            <Typography className={classes.title} color="textSecondary">
-              {book.title}
-            </Typography>
-          </CardContent>
-          <Button
-            justify={"center"}
-            variant="fab"
-            color="primary"
-            aria-label="Add"
-            className={classes.button}
-            aria-owns={anchorEl ? "simple-menu" : null}
-            aria-haspopup="true"
-            onClick={this.handleClick}
           >
-            <AddIcon />
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handleClose}
-          >
-            <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-            <MenuItem onClick={this.handleClose}>My account</MenuItem>
-            <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-          </Menu>
+            <BookCardMenu
+              onChangeShelf={this.props.onChangeShelf}
+              book={book}
+            />
+          </CardMedia>
         </Card>
+        <Typography className={classes.title} color="textSecondary">
+          {book.title}
+        </Typography>
       </Grid>
     );
   }

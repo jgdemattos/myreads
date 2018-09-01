@@ -27,7 +27,15 @@ class App extends Component {
       this.setState({ books });
     });
   }
-
+  changeShelf(book) {
+    this.setState(state => ({
+      books: state.books.filter(c => c.id !== book.id)
+    }));
+    this.setState(state => ({
+      books: state.books.concat([book])
+    }));
+    console.log(this.state.books);
+  }
   render() {
     return (
       <div>
@@ -35,6 +43,10 @@ class App extends Component {
           path="/"
           render={() => (
             <ListShelves
+              onChangeShelf={book => {
+                this.changeShelf(book);
+                //history.push('/')
+              }}
               shelves={this.state.shelves}
               books={this.state.books}
             />

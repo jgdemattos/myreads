@@ -1,5 +1,7 @@
 import React from "react";
+import injectTapEventPlugin from "react-tap-event-plugin";
 import ReactDOM from "react-dom";
+
 import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import "./index.css";
@@ -8,6 +10,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import indexRoutes from "./routes/index.js";
 var hist = createBrowserHistory();
 
+injectTapEventPlugin();
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
