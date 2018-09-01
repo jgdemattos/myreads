@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import BookCardMenu from "./BookCardMenu";
+
 const width = 128;
 const styles = {
   grid: {
@@ -24,8 +25,6 @@ const styles = {
 };
 
 class BookCard extends Component {
-  state = { shelf: "" };
-
   render() {
     const { classes, book } = this.props;
 

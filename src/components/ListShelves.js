@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import DisplayBooks from "./DisplayBooks";
+import Shelf from "./Shelf";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
@@ -28,10 +28,9 @@ class ListShelves extends Component {
                 <Typography className={classes.title} color="textSecondary">
                   {shelf.name}
                 </Typography>
-                <DisplayBooks
+                <Shelf
                   onChangeShelf={this.props.onChangeShelf}
                   key={shelf.key}
-                  shelf={shelf}
                   books={books.filter(book => book.shelf === shelf.key)}
                 />
               </Grid>
@@ -44,5 +43,4 @@ class ListShelves extends Component {
   }
 }
 
-//export default ListShelves;
 export default withStyles(styles)(ListShelves);

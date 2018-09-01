@@ -1,18 +1,13 @@
 import React, { Component } from "react";
-
-import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-
 import BookCard from "./BookCard";
 
-const styles = {};
-
-class DisplayBooks extends Component {
+class Shelf extends Component {
   render() {
-    const { classes, books } = this.props;
+    const { books } = this.props;
 
     return (
-      <Grid container className={classes.root} spacing={40}>
+      <Grid container spacing={40}>
         {
           <Grid container item xs={12} justify={"center"}>
             <Grid container spacing={40} direction={"row"} justify={"center"}>
@@ -33,5 +28,4 @@ class DisplayBooks extends Component {
   }
 }
 
-//export default DisplayBooks;
-export default withStyles(styles)(DisplayBooks);
+export default Shelf;

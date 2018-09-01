@@ -34,7 +34,6 @@ class App extends Component {
     this.setState(state => ({
       books: state.books.concat([book])
     }));
-    console.log(this.state.books);
   }
   render() {
     return (
