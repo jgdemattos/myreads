@@ -7,7 +7,7 @@ import Divider from "@material-ui/core/Divider";
 const styles = {
   title: {
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 50,
     fontSize: 30
   },
   divider: {
@@ -28,11 +28,14 @@ class ListShelves extends Component {
                 <Typography className={classes.title} color="textSecondary">
                   {shelf.name}
                 </Typography>
-                <Shelf
-                  onChangeShelf={this.props.onChangeShelf}
-                  key={shelf.key}
-                  books={books.filter(book => book.shelf === shelf.key)}
-                />
+
+                <Grid container justify={"center"}>
+                  <Shelf
+                    onChangeShelf={this.props.onChangeShelf}
+                    key={shelf.key}
+                    books={books.filter(book => book.shelf === shelf.key)}
+                  />
+                </Grid>
               </Grid>
               <Divider light className={classes.divider} />
             </div>

@@ -3,6 +3,19 @@ import { Route } from "react-router-dom";
 import "./App.css";
 import ListShelves from "./components/ListShelves";
 import * as BooksAPI from "./utils/BooksAPI";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import purple from "@material-ui/core/colors/purple";
+
+const theme = createMuiTheme({
+  palette: {
+    background: {
+      default: "#f5f5f5"
+    },
+    secondary: purple
+  }
+});
+
 class App extends Component {
   state = {
     books: [],
@@ -35,12 +48,14 @@ class App extends Component {
       books: state.books.concat([book])
     }));
   }
+
   render() {
     return (
-      <div>
-        <Route
-          path="/"
-          render={() => (
+      <Route
+        path="/"
+        render={() => (
+          <MuiThemeProvider theme={theme}>
+            <CssBaseline />
             <ListShelves
               onChangeShelf={book => {
                 this.changeShelf(book);
@@ -49,11 +64,10 @@ class App extends Component {
               shelves={this.state.shelves}
               books={this.state.books}
             />
-          )}
-        />
-      </div>
+          </MuiThemeProvider>
+        )}
+      />
     );
   }
 }
-
 export default App;
