@@ -25,9 +25,8 @@ class ChangeShelfMenu extends Component {
     this.setState({ anchorEl: null });
   };
   handleShelfChange = (event, shelf) => {
-    const newBook = this.props.book;
-    newBook.shelf = shelf;
-    if (this.props.onChangeShelf) this.props.onChangeShelf(newBook);
+    if (this.props.onChangeShelf)
+      this.props.onChangeShelf(this.props.book, shelf);
     this.handleClose();
   };
 

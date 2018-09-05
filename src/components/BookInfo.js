@@ -10,8 +10,8 @@ import BookCover from "./BookCover";
 
 const styles = {
   paper: {
-    margin: 10,
-    padding: 50
+    margin: 0,
+    padding: 0
   }
 };
 

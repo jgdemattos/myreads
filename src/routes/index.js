@@ -1,7 +1,8 @@
 import App from "../App";
+import SearchPage from "../components/SearchPage";
 
 var indexRoutes = [
-  { path: "/login", name: "LoginPage", component: App },
+  { path: "/search", name: "SearchPage", component: SearchPage },
   { path: "/", name: "Components", component: App }
 ];
 

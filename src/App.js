@@ -6,6 +6,7 @@ import * as BooksAPI from "./utils/BooksAPI";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import purple from "@material-ui/core/colors/purple";
+import TopBar from "./components/TopBar";
 
 const theme = createMuiTheme({
   palette: {
@@ -40,26 +41,33 @@ class App extends Component {
       this.setState({ books });
     });
   }
-  changeShelf(book) {
-    this.setState(state => ({
-      books: state.books.filter(c => c.id !== book.id)
-    }));
-    this.setState(state => ({
-      books: state.books.concat([book])
-    }));
+  changeShelf(book, shelf) {
+    book.shelf = shelf;
+    BooksAPI.update(book, shelf)
+      .then(
+        this.setState(state => ({
+          books: state.books.filter(c => c.id !== book.id)
+        }))
+      )
+      .then(
+        this.setState(state => ({
+          books: state.books.concat([book])
+        }))
+      );
   }
 
   render() {
     return (
       <Route
         path="/"
-        render={() => (
+        render={({ history }) => (
           <MuiThemeProvider theme={theme}>
             <CssBaseline />
+            <TopBar />
             <ListShelves
-              onChangeShelf={book => {
-                this.changeShelf(book);
-                //history.push('/')
+              onChangeShelf={(book, shelf) => {
+                this.changeShelf(book, shelf);
+                history.push("/");
               }}
               shelves={this.state.shelves}
               books={this.state.books}
