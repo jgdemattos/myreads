@@ -29,7 +29,7 @@ class ChangeShelfMenu extends Component {
       <div className="showDescButton">
         <Button
           variant="fab"
-          color="secondary"
+          color="primary"
           aria-label="Add"
           className={classes.button}
           onClick={this.handleClickOpen}

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import { withStyles } from "@material-ui/core/styles";
@@ -18,7 +18,7 @@ function BookCover(props) {
     <Card className={props.classes.card}>
       <CardMedia
         className={props.classes.media}
-        image={props.book.imageLinks.thumbnail}
+        image={props.book.imageLinks && props.book.imageLinks.thumbnail}
         title={props.book.title}
       />
     </Card>

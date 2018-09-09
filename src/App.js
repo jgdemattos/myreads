@@ -1,39 +1,28 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
 import "./App.css";
-import ListShelves from "./components/ListShelves";
 import * as BooksAPI from "./utils/BooksAPI";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import { createMuiTheme } from "@material-ui/core/styles";
 import purple from "@material-ui/core/colors/purple";
-import TopBar from "./components/TopBar";
+import { Route } from "react-router-dom";
+import DisplayShelvesPage from "./components/DisplayShelvesPage";
+import SearchPage from "./components/SearchPage";
 
 const theme = createMuiTheme({
   palette: {
     background: {
       default: "#f5f5f5"
     },
-    secondary: purple
+    secondary: {
+      light: "#FFF",
+      main: "#FFF",
+      dark: purple
+    }
   }
 });
 
 class App extends Component {
   state = {
-    books: [],
-    shelves: [
-      {
-        key: "currentlyReading",
-        name: "Currently Reading"
-      },
-      {
-        key: "wantToRead",
-        name: "Want to Read"
-      },
-      {
-        key: "read",
-        name: "Read"
-      }
-    ]
+    books: []
   };
 
   componentDidMount() {
@@ -55,26 +44,49 @@ class App extends Component {
         }))
       );
   }
-
+  shelves = [
+    {
+      key: "currentlyReading",
+      name: "Currently Reading"
+    },
+    {
+      key: "wantToRead",
+      name: "Want to Read"
+    },
+    {
+      key: "read",
+      name: "Read"
+    }
+  ];
   render() {
     return (
-      <Route
-        path="/"
-        render={({ history }) => (
-          <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-            <TopBar />
-            <ListShelves
+      <div>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <DisplayShelvesPage
               onChangeShelf={(book, shelf) => {
                 this.changeShelf(book, shelf);
-                history.push("/");
               }}
-              shelves={this.state.shelves}
               books={this.state.books}
+              shelves={this.shelves}
+              theme={theme}
             />
-          </MuiThemeProvider>
-        )}
-      />
+          )}
+        />
+        <Route
+          path="/search"
+          render={({ history }) => (
+            <SearchPage
+              books={this.state.books}
+              onChangeShelf={(book, shelf) => {
+                this.changeShelf(book, shelf);
+              }}
+            />
+          )}
+        />
+      </div>
     );
   }
 }

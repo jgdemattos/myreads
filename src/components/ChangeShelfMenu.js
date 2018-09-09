@@ -73,6 +73,12 @@ class ChangeShelfMenu extends Component {
           >
             Read
           </MenuItem>
+          <MenuItem
+            onClick={event => this.handleShelfChange(event, "none")}
+            selected={!book.shelf || book.shelf === "none"}
+          >
+            None
+          </MenuItem>
         </Menu>
       </div>
     );

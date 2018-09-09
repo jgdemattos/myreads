@@ -17,15 +17,16 @@ class Shelf extends Component {
     return (
       <div className="containerItem">
         <Grid container item spacing={40} direction={"row"} justify={"center"}>
-          {books.map(book => {
-            return (
-              <BookCard
-                onChangeShelf={this.props.onChangeShelf}
-                key={book.id}
-                book={book}
-              />
-            );
-          })}
+          {books.length > 0 &&
+            books.map(book => {
+              return (
+                <BookCard
+                  onChangeShelf={this.props.onChangeShelf}
+                  key={book.id}
+                  book={book}
+                />
+              );
+            })}
         </Grid>
       </div>
     );

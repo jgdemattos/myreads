@@ -61,7 +61,7 @@ class BookCard extends Component {
             </Grid>
             <Grid xl={3} item>
               <Typography className={classes.description} color="textSecondary">
-                {book.description.substring(0, 300) + "..."}
+                {book.description && book.description.substring(0, 300) + "..."}
               </Typography>
             </Grid>
           </Grid>
