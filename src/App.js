@@ -4,8 +4,8 @@ import * as BooksAPI from "./utils/BooksAPI";
 import { createMuiTheme } from "@material-ui/core/styles";
 import purple from "@material-ui/core/colors/purple";
 import { Route } from "react-router-dom";
-import DisplayShelvesPage from "./components/DisplayShelvesPage";
-import SearchPage from "./components/SearchPage";
+import DisplayShelvesPage from "./pages/DisplayShelvesPage";
+import SearchPage from "./pages/SearchPage";
 
 const theme = createMuiTheme({
   palette: {
@@ -30,6 +30,7 @@ class App extends Component {
       this.setState({ books });
     });
   }
+
   changeShelf(book, shelf) {
     book.shelf = shelf;
     BooksAPI.update(book, shelf)

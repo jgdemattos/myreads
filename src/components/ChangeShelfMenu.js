@@ -4,6 +4,7 @@ import ReorderIcon from "@material-ui/icons/Reorder";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 const styles = {
   cardMenu: {}
@@ -84,4 +85,10 @@ class ChangeShelfMenu extends Component {
     );
   }
 }
+
+ChangeShelfMenu.propTypes = {
+  onChangeShelf: PropTypes.func.isRequired,
+  book: PropTypes.object.isRequired
+};
+
 export default withStyles(styles)(ChangeShelfMenu);

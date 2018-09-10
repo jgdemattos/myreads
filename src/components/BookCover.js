@@ -2,6 +2,7 @@ import React from "react";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 const width = 128;
 const styles = {
   media: {
@@ -24,4 +25,9 @@ function BookCover(props) {
     </Card>
   );
 }
+
+BookCover.propTypes = {
+  book: PropTypes.object.isRequired
+};
+
 export default withStyles(styles)(BookCover);

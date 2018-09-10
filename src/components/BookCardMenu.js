@@ -1,32 +1,29 @@
-import React, { Component } from "react";
-
-import { withStyles } from "@material-ui/core/styles";
+import React from "react";
 import ChangeShelfMenu from "./ChangeShelfMenu";
 import ShowDescButton from "./ShowDescButton";
 import Grid from "@material-ui/core/Grid";
-const styles = {};
+import PropTypes from "prop-types";
 
-class BookCardMenu extends Component {
-  state = {};
+function BookCardMenu(props) {
+  const { book } = props;
 
-  render() {
-    const { book } = this.props;
-
-    return (
-      <div className="cardMenu">
-        <Grid container spacing={8} direction={"row"}>
-          <Grid item>
-            <ShowDescButton book={book} />
-          </Grid>
-          <Grid item>
-            <ChangeShelfMenu
-              onChangeShelf={this.props.onChangeShelf}
-              book={book}
-            />
-          </Grid>
+  return (
+    <div className="cardMenu">
+      <Grid container spacing={8} direction={"row"}>
+        <Grid item>
+          <ShowDescButton book={book} />
         </Grid>
-      </div>
-    );
-  }
+        <Grid item>
+          <ChangeShelfMenu onChangeShelf={props.onChangeShelf} book={book} />
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
-export default withStyles(styles)(BookCardMenu);
+
+BookCardMenu.propTypes = {
+  onChangeShelf: PropTypes.func.isRequired,
+  book: PropTypes.object.isRequired
+};
+
+export default BookCardMenu;

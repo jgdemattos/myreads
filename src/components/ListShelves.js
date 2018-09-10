@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Shelf from "./Shelf";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
+import PropTypes from "prop-types";
+
 const styles = {
   title: {
     marginTop: 20,
@@ -15,35 +17,39 @@ const styles = {
   }
 };
 
-class ListShelves extends Component {
-  render() {
-    const { classes, shelves, books } = this.props;
+function ListShelves(props) {
+  const { classes, shelves, books } = props;
 
-    return (
-      <div className="listShelves">
-        {shelves.map(shelf => {
-          return (
-            <div key={shelf.key}>
-              <Grid key={shelf.key} container justify={"center"}>
-                <Typography className={classes.title} color="textSecondary">
-                  {shelf.name}
-                </Typography>
+  return (
+    <div className="listShelves">
+      {shelves.map(shelf => {
+        return (
+          <div key={shelf.key}>
+            <Grid key={shelf.key} container justify={"center"}>
+              <Typography className={classes.title} color="textSecondary">
+                {shelf.name}
+              </Typography>
 
-                <Grid container justify={"center"}>
-                  <Shelf
-                    onChangeShelf={this.props.onChangeShelf}
-                    key={shelf.key}
-                    books={books.filter(book => book.shelf === shelf.key)}
-                  />
-                </Grid>
+              <Grid container justify={"center"}>
+                <Shelf
+                  onChangeShelf={props.onChangeShelf}
+                  key={shelf.key}
+                  books={books.filter(book => book.shelf === shelf.key)}
+                />
               </Grid>
-              <Divider light className={classes.divider} />
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
+            </Grid>
+            <Divider light className={classes.divider} />
+          </div>
+        );
+      })}
+    </div>
+  );
 }
+
+ListShelves.propTypes = {
+  onChangeShelf: PropTypes.func.isRequired,
+  books: PropTypes.array.isRequired,
+  shelves: PropTypes.array.isRequired
+};
 
 export default withStyles(styles)(ListShelves);

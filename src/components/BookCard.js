@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-
+import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import BookCardMenu from "./BookCardMenu";
 import BookCover from "./BookCover";
 import { Paper } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const width = 128;
 const styles = {
@@ -25,6 +25,10 @@ const styles = {
     padding: 30,
     maxWidth: 300
   },
+  authors: {
+    fontSize: 10,
+    paddingLeft: 30
+  },
   paper: {
     padding: 10,
     marginTop: 20
@@ -36,45 +40,45 @@ const styles = {
   }
 };
 
-class BookCard extends Component {
-  state = {
-    visualizerOpen: false
-  };
-  handleChange = () => {
-    this.setState(state => ({ visualizerOpen: !state.visualizerOpen }));
-  };
-  render() {
-    const { classes, book } = this.props;
+function BookCard(props) {
+  const { classes, book } = props;
 
-    return (
-      <Grid item>
-        <Paper square className={classes.paper}>
-          <Grid xl={6} container item spacing={0} direction={"row"}>
-            <Grid xl={3} item>
-              <div className={classes.bookCover}>
-                <BookCover book={book} />
-              </div>
+  return (
+    <Grid item>
+      <Paper square className={classes.paper} elevation={3}>
+        <Grid xl={6} container item spacing={0} direction={"row"}>
+          <Grid xl={3} item>
+            <div className={classes.bookCover}>
+              <BookCover book={book} />
+            </div>
 
-              <Typography className={classes.title} color="textSecondary">
-                {book.title}
-              </Typography>
-            </Grid>
-            <Grid xl={3} item>
-              <Typography className={classes.description} color="textSecondary">
-                {book.description && book.description.substring(0, 300) + "..."}
-              </Typography>
-            </Grid>
+            <Typography className={classes.title} color="textSecondary">
+              {book.title}
+            </Typography>
           </Grid>
-          <Grid xl={6} container justify="flex-end" className="bookCardMenu">
-            <BookCardMenu
-              onChangeShelf={this.props.onChangeShelf}
-              book={book}
-            />
+          <Grid xl={3} item>
+            <Typography className={classes.authors} color="textSecondary">
+              {book.authors &&
+                book.authors.map(author => {
+                  return author + "; ";
+                })}
+            </Typography>
+            <Typography className={classes.description} color="textSecondary">
+              {book.description && book.description.substring(0, 300) + "..."}
+            </Typography>
           </Grid>
-        </Paper>
-      </Grid>
-    );
-  }
+        </Grid>
+        <Grid xl={6} container justify="flex-end" className="bookCardMenu">
+          <BookCardMenu onChangeShelf={props.onChangeShelf} book={book} />
+        </Grid>
+      </Paper>
+    </Grid>
+  );
 }
+
+BookCard.propTypes = {
+  onChangeShelf: PropTypes.func.isRequired,
+  book: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(BookCard);

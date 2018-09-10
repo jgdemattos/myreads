@@ -8,6 +8,7 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-loading": "^2.0.3",
+    "react-progress-2": "^4.4.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
