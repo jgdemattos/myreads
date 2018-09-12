@@ -1,17 +1,11 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Shelf from "./Shelf";
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import PropTypes from "prop-types";
 
 const styles = {
-  title: {
-    marginTop: 20,
-    marginBottom: 50,
-    fontSize: 30
-  },
   divider: {
     marginTop: "20px"
   }
@@ -26,15 +20,12 @@ function ListShelves(props) {
         return (
           <div key={shelf.key}>
             <Grid key={shelf.key} container justify={"center"}>
-              <Typography className={classes.title} color="textSecondary">
-                {shelf.name}
-              </Typography>
-
               <Grid container justify={"center"}>
                 <Shelf
                   onChangeShelf={props.onChangeShelf}
                   key={shelf.key}
                   books={books.filter(book => book.shelf === shelf.key)}
+                  shelf={shelf}
                 />
               </Grid>
             </Grid>

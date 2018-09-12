@@ -36,6 +36,9 @@ const styles = {
     "&:after": {
       borderBottomColor: purple
     }
+  },
+  drawerButton: {
+    marginLeft: 10
   }
 };
 
