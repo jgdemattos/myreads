@@ -44,6 +44,12 @@ Also:
 - Preview books
 - Select multiple books and change their shelves at once
 
+## How to change multiple books
+
+Click on the icon by the side of the shelf name, this will activate the selection mode, a tiny modal will render by the bottom-right side of the screen, where you can choose the shelf where the books will be moved to. Clicking on 'CHANGE' will confirm the action.
+
+Be aware, not choosing a shelf will remove the books from the shelf, as the standard option is 'None'.
+
 ## Working example
 
 [On netlify](https://festive-swirles-358a66.netlify.com/)
